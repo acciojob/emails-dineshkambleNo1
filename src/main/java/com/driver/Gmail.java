@@ -60,7 +60,7 @@ public class Gmail extends Email {
                 //ye bhi samjh nhi aaya
                 // pata toh chal raha h ki add ho raha h pr kese ye nhi
                 Trash.add(new Mail(mail.date,mail.sender,mail.message));
-               // Inbox.remove(mail); ------> error
+                Inbox.remove(mail);
             }
         }
     }
@@ -69,10 +69,9 @@ public class Gmail extends Email {
         // If the inbox is empty, return null
         if(Inbox.size() == 0) return null;
         // Else, return the message of the latest mail present in the inbox
-          else {
-              Mail mail = Inbox.get(0);
-              return mail.message;
-        }
+        Mail mail = Inbox.get(0);
+        return mail.message;
+
     }
 
     public String findOldestMessage(){
@@ -113,7 +112,7 @@ public class Gmail extends Email {
 
     public int getTrashSize(){
         // Return number of mails in Trash
-        return Inbox.size();
+        return Trash.size();
     }
 
     public void emptyTrash(){

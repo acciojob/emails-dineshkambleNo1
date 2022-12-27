@@ -27,31 +27,31 @@ public class Email {
         // 5. It contains at least one special character. Any character apart from alphabets and digits is a special character
 
 
-        if(oldPassword.equals(password)){
+        if(this.password.equals(oldPassword)) {
 
             //check the length
-            if(newPassword.length() < 8)  return;
+            if (newPassword.length() >= 8) {
 
-            //const regex pattern("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[-+_!@#$%^&*.,?]).+$");
+                //const regex pattern("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[-+_!@#$%^&*.,?]).+$");
 
                 // loop string newpassword wali me
                 // character nikalne honge
                 // uppercase ki range dekhne ka || lowercase ki range dekhne ka || digit ki range
                 boolean check = false;
 
-            for(int i =0; i< newPassword.length();i++)
-            {
-                char ch = newPassword.charAt(i);
-                if((ch >='A' || ch <='Z') && (ch >='a' || ch <= 'z') && (ch >= 0 || ch <= 9) && ((ch >= 32 || ch <= 47) && (ch >= 58 || ch <= 64)
-                        && (ch >= 91 || ch <= 96) && (ch >= 123 || ch <= 126))){
-                    check = true;
-                    break;
-            }
+                for (int i = 0; i < newPassword.length(); i++) {
+                    char ch = newPassword.charAt(i);
+                    if ((ch >= 'A' || ch <= 'Z') && (ch >= 'a' || ch <= 'z') && (ch >= 0 || ch <= 9) && ((ch >= 32 || ch <= 47) && (ch >= 58 || ch <= 64)
+                            && (ch >= 91 || ch <= 96) && (ch >= 123 || ch <= 126))) {
+                        check = true;
+                        break;
+                    }
 
-            }
+                }
 
-            if(check) { // check toh kr liya pr aage kya krna he
+                if (check) { // check toh kr liya pr aage kya krna he
                     this.password = newPassword;
+                }
             }
         }
 

@@ -41,17 +41,18 @@ public class Workspace extends Gmail{
             }
         });
 
-        LocalTime limit = calendar.get(0).getEndTime();
-        int cnt = 1;
+        LocalTime limit = calendar.get(0).getEndTime(); // storing the end time of first meeting for checking whether the second
+        int cnt = 1;  // meeting starts after the first ends or not
 
         for(int i =1; i<calendar.size();i++)
         {
-            if(calendar.get(i).getStartTime().compareTo(limit) > 0)
+            if(calendar.get(i).getStartTime().compareTo(limit) > 0) // if the start time of next meeting is greater than the end time of
             {
-                cnt++;
-                limit = calendar.get(i).getEndTime();
+                cnt++;  // the previous meeting then the next meeting can be done and increase count
+                limit = calendar.get(i).getEndTime(); // when the start of the next meeting is greater then the limit will be the
             }
-        }
+        }//end time of the next meeting
+
 
         return cnt;
     }
