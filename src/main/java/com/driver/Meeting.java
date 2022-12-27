@@ -1,5 +1,6 @@
 package com.driver;
 
+import java.time.LocalDate;
 import java.time.LocalTime;
 
 public class Meeting {
@@ -10,5 +11,16 @@ public class Meeting {
         this.startTime = startTime;
         this.endTime = endTime;
     }
+
+    //  ??????
+    public LocalTime getStartTime(){
+        return startTime;
+    }
+
+    public LocalTime getEndTime(){
+        return endTime;
+    }
+
+
 
 }
