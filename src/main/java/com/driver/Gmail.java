@@ -26,23 +26,25 @@ public class Gmail extends Email {
         super(emailId);
      }
     public void receiveMail(Date date, String sender, String message){
-        // If the inbox is full,
 
-        if(Inbox.size() == getInboxCapacity()) {
-            // agar inbox full he matlab
-            // inbox ki size(0 agar ==  ho jati he getInboxCapacit() k size k
-            // toh move the oldest mail in the inbox to trash and add the new mail to inbox.
+        // get the final mail template
 
-            // move the oldest to the trash box
-            Trash.add(Inbox.remove(Inbox.size() - 1));
+        if(Inbox.size() == inboxCapacity) {// Inbox ki size full ho gae tabh
+
+            Mail mail = Inbox.get(0);
+
+            // remove it from inbox
+
+            Inbox.remove(0);
+
+            // adding it to the trash
+            Trash.add(mail);
         }
-        // It is guaranteed that:
-        // 1. Each mail in the inbox is distinct.
-        // 2. The mails are received in non-decreasing order. This means that the date of a new mail is greater than equal to the dates of mails received already.
 
-        // add the new mail to inbox
-        Inbox.add(0,new Mail(date,sender,message));
-        
+        // Add the latest mail
+
+        Mail mail = new Mail(date, sender, message);
+        Inbox.add(mail);
     }
 
     public void deleteMail(String message){
@@ -51,9 +53,10 @@ public class Gmail extends Email {
 
         for (int i =0;i<Inbox.size();i++)
         {
-            //????????????
+
             Mail mail = Inbox.get(i);
-            // arraylist se retrive kiya or kaha dala > ?
+
+
 
             if(mail.message.equals(message))
             {
@@ -66,20 +69,22 @@ public class Gmail extends Email {
     }
 
     public String findLatestMessage(){
+        // LatestMessage arrlist ka last element
         // If the inbox is empty, return null
         if(Inbox.size() == 0) return null;
         // Else, return the message of the latest mail present in the inbox
-        Mail mail = Inbox.get(0);
+        Mail mail = Inbox.get(Inbox.size() - 1);
         return mail.message;
 
     }
 
     public String findOldestMessage(){
+        // older msg matlab = pehla
         // If the inbox is empty, return null
         if(Inbox.size() == 0) return null;
         // Else, return the message of the oldest mail present in the inbox
         else{
-            Mail mail = Inbox.get(Inbox.size() - 1);
+            Mail mail = Inbox.get(0);
             return mail.message;
         }
     }
@@ -88,7 +93,7 @@ public class Gmail extends Email {
         //find number of mails in the inbox which are received between given dates
         //It is guaranteed that start date <= end date
 
-        // ye samjh nhi aaya ?????????????
+
 
         int cntMailsBetween = 0;
 
@@ -96,7 +101,7 @@ public class Gmail extends Email {
         {
             Mail mail = Inbox.get(i);
 
-            if(mail.date.compareTo(start) > 0 && mail.date.compareTo(end) < 0){
+            if(mail.date.compareTo(start) >= 0 && mail.date.compareTo(end) <= 0){
                     cntMailsBetween++;
             }
         }

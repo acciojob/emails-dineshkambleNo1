@@ -50,9 +50,20 @@ public class Email {
                 }
 
                 if (check) { // check toh kr liya pr aage kya krna he
+                    System.out.println("Password changed successfully!");
                     this.password = newPassword;
                 }
+
+                else {
+                    System.out.println("The new password is not valid!");
+                }
             }
+
+
+        }
+
+        else {
+            System.out.println("The given password does not match current password!");
         }
 
     }
